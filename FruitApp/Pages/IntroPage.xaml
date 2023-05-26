@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FruitApp.Pages.IntroPage"
+             xmlns:viewmodel="clr-namespace:FruitApp.ViewModel"
+             xmlns:models="clr-namespace:FruitApp.Models"
+             x:DataType="viewmodel:IntroViewModel" 
+             Shell.NavBarIsVisible="False"
+             Title="IntroPage">
+
+
+    <StackLayout BackgroundColor="Yellow"
+                 Spacing="20">
+        
+        <Image Source="coop.png"
+                    Aspect="AspectFit"
+                    BackgroundColor="Transparent"
+                    VerticalOptions="Center"/>
+
+        <Label Grid.Row="1"
+                HorizontalOptions="Center"
+                Text="Det rigtige sted at spare"
+                FontSize="30"
+                FontAttributes="Bold" />
+
+
+        <CarouselView IndicatorView="indicatorView" 
+                      HorizontalOptions="FillAndExpand" 
+                      VerticalOptions="FillAndExpand" 
+                      ItemsSource="{Binding IntroScreens}"
+                      HeightRequest="300"
+                      Loop="False">
+
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="models:IntroScreenModel">
+                    <Grid RowDefinitions="75*,100*">
+                        <Image Source="{Binding IntroImage}" 
+                               Scale="1"/>
+
+                        <VerticalStackLayout Grid.Row="1" 
+                                             Spacing="20">
+                            <Label Text="{Binding IntroTitle}" 
+                                   FontSize="28" 
+                                   FontAttributes="Bold" 
+                                   HorizontalOptions="Center" />
+
+                            <Label Text="{Binding IntroDescription}" 
+                                   FontSize="14" 
+                                   TextColor="Black" 
+                                   HorizontalOptions="Center"
+                                   FontAttributes="Italic"/>
+                        </VerticalStackLayout>
+
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <StackLayout Spacing="15">
+            <IndicatorView x:Name="indicatorView" 
+                           HorizontalOptions="Center"
+                           IndicatorSize="5"
+                           IndicatorColor="LightGray"
+                           SelectedIndicatorColor="DarkSeaGreen" />
+
+            <Frame HorizontalOptions="Center"
+                   Margin="10"
+                   CornerRadius="10"
+                   HeightRequest="60"
+                   WidthRequest="150"
+                   BackgroundColor="LightGreen">
+
+                <Label Text="Fortsæt" 
+                       FontSize="16"
+                       HorizontalTextAlignment="Center" 
+                       FontAttributes="Bold"/>
+            </Frame>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

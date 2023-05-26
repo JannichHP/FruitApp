@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FruitApp.Pages.IndkoebslistePage"
+             xmlns:viewmodel="clr-namespace:FruitApp.ViewModel"
+             x:DataType="viewmodel:ListeViewModel" 
+             Shell.NavBarIsVisible="False"
+             Title="Indkoebsliste">
+    
+    <VerticalStackLayout>
+        <CollectionView Grid.Row="2" Grid.ColumnSpan="2"
+                        ItemsSource="{Binding Fruits}"
+                        SelectionMode="None">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type x:String}">
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Delete"
+                                           BackgroundColor="Red"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ListeViewModel}}, Path=DeleteCommand}"
+                                           CommandParameter="{Binding .}">
+
+                                </SwipeItem>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Grid Padding="0,5">
+                            <Frame>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ListeViewModel}}, Path=TapCommand}"
+                                                          CommandParameter="{Binding .}"/>
+
+                                </Frame.GestureRecognizers>
+                                <Label Text="{Binding .}"
+                                   FontSize="12"/>
+                            </Frame>
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Entry Placeholder="Enter Fruit"
+               Text="{Binding Text}"
+               Grid.Row="1"/>
+
+        <Button Text="Add"
+                Command="{Binding AddCommand}"
+                Grid.Row="1"
+                Grid.Column="1"/>
+    </VerticalStackLayout>
+</ContentPage>
