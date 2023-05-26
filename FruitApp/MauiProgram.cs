@@ -41,6 +41,9 @@ public static class MauiProgram
 		builder.Services.AddTransient<IntroPage>();
 		builder.Services.AddTransient<IntroViewModel>();
 
+		builder.Services.AddTransient<SettingsPage>();
+		builder.Services.AddTransient<SettingViewModel>();
+
 		//Adds the Setting Page
 
 

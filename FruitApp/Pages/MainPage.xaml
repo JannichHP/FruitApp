@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FruitApp.MainPage"
+             x:Class="FruitApp.Pages.MainPage"
              xmlns:viewmodel="clr-namespace:FruitApp.ViewModel"
              x:DataType="viewmodel:MainViewModel" 
              Shell.NavBarIsVisible="False"
@@ -17,41 +17,5 @@
                     Aspect="AspectFit"
                     BackgroundColor="Transparent"
                     VerticalOptions="Center"/>
-
-        <Button Grid.Row="1"
-            ImageSource="menu.png">
-        </Button>
-
-        <Label Grid.Row="1"
-                HorizontalOptions="Center"
-                Text="Det rigtige sted at spare"
-                FontSize="32"
-                FontAttributes="Bold">
-            <!--FontFamily="">-->
-        </Label>
-
-        <Button Grid.Row="2">
-            
-        </Button>
-
-        <Button Grid.Row="3">
-            
-        </Button>
-
-        <Button Grid.Row="4">
-            
-        </Button>
-
-        <CarouselView>
-            
-        </CarouselView>
-        
-        <ProgressBar Grid.Row="5">
-        
-        </ProgressBar>
-
-
-
-
     </Grid>
 </ContentPage>

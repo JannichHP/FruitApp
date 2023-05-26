@@ -24,7 +24,9 @@
                 FontAttributes="Bold" />
 
 
-        <CarouselView IndicatorView="indicatorView" 
+        <CarouselView x:Name="CarouselIntro"
+                      IndicatorView="indicatorView" 
+                      Position="{Binding Position}"
                       HorizontalOptions="FillAndExpand" 
                       VerticalOptions="FillAndExpand" 
                       ItemsSource="{Binding IntroScreens}"
@@ -47,7 +49,9 @@
                             <Label Text="{Binding IntroDescription}" 
                                    FontSize="14" 
                                    TextColor="Black" 
-                                   HorizontalOptions="Center"
+                                   CharacterSpacing="1"
+                                   Padding="20"
+                                   HorizontalTextAlignment="Center"
                                    FontAttributes="Italic"/>
                         </VerticalStackLayout>
 
@@ -69,10 +73,13 @@
                    WidthRequest="150"
                    BackgroundColor="LightGreen">
 
-                <Label Text="Fortsæt" 
+                <Label Text="{Binding ButtonText}" 
                        FontSize="16"
                        HorizontalTextAlignment="Center" 
                        FontAttributes="Bold"/>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NextCommand}" />
+                </Frame.GestureRecognizers>
             </Frame>
         </StackLayout>
     </StackLayout>

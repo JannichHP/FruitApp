@@ -1,21 +1,50 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using FruitApp.Models;
+using FruitApp.Pages;
 using Microsoft.Toolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows.Input;
 
 namespace FruitApp.ViewModel;
 
-public partial class IntroViewModel : ObservableObject
+public partial class IntroViewModel : INotifyPropertyChanged
 {
+    private string _buttonText = "Næste";
+
+    private int _position;
+
+    private int _counter = 1;
+
+    public string ButtonText 
+    { 
+        get => _buttonText;
+        set {
+            if (_buttonText != value)
+            {
+                _buttonText = value;
+                OnPropertyChanged(nameof(ButtonText));
+            }
+        } 
+    }
+
+    public int Position 
+    { 
+        get => _position;
+        set
+        {
+            if (_position != value) 
+            {
+                _position = value;
+                OnPropertyChanged(nameof(Position));
+            }
+        }
+    }
+
     public ObservableCollection<IntroScreenModel> IntroScreens { get; set; } = new ObservableCollection<IntroScreenModel>();
 
-    [ObservableProperty]
-    private string _buttonText = "Next";
-
-    [ObservableProperty]
-    private int _position;
+    public event PropertyChangedEventHandler PropertyChanged;
 
     public IntroViewModel()
     {
@@ -49,16 +78,32 @@ public partial class IntroViewModel : ObservableObject
     }
 
     [ICommand]
-    void Next()
+    async void Next()
     {
-        if (Position >= IntroScreens.Count - 1)
+        Debug.WriteLine(IntroScreens.Count -1);
+        Debug.WriteLine(Position + 1);
+        if (Position + 1 >= IntroScreens.Count - 1)
         {
-
+            ButtonText = "Fortsæt";
+            _counter++;
+        }
+        else
+        {
+            ButtonText = "Næste";
+        }
+        if (_counter >= 3)
+        {
+           await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
         }
         else
         {
             Position += 1;
         }
+    }
+
+    private void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
 

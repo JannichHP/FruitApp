@@ -1,6 +1,6 @@
 ﻿using FruitApp.ViewModel;
 
-namespace FruitApp;
+namespace FruitApp.Pages;
 
 public partial class MainPage : ContentPage
 {
